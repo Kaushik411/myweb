@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Greeting for Srishty</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #fbc2eb, #a18cd1);
+      background-size: 400% 400%;
+      animation: gradientBG 10s ease infinite;
+      font-family: 'Poppins', sans-serif;
+      overflow: hidden;
+    }
+
+    @keyframes gradientBG {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+
+    .greeting {
+      text-align: center;
+      font-size: 2.5rem;
+      color: #fff;
+      text-shadow: 0 0 20px rgba(255,255,255,0.7);
+      animation: fadeIn 1.5s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .hearts span {
+      position: absolute;
+      bottom: -20px;
+      font-size: 1.5rem;
+      animation: floatUp 6s linear infinite;
+      color: #fff;
+      opacity: 0.7;
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(0) scale(1); opacity: 0.8; }
+      50% { opacity: 1; }
+      100% { transform: translateY(-110vh) scale(1.2); opacity: 0; }
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 20px;
+      background: #fff;
+      color: #ff69b4;
+      font-size: 1rem;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transition: transform 0.3s;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <div class="greeting" id="greetingText">Hi Srishty! You’re amazing! ✨</div>
+    <button onclick="changeGreeting()">Show Another Greeting</button>
+  </div>
+  <div class="hearts" id="heartsContainer"></div>
+
+  <script>
+    const greetings = [
+      "Hi Srishty! You’re amazing! ✨",
+      "Hey Srishty, You light up every moment! 💖",
+      "Hello Srishty, You’re truly special! 🌸",
+      "Dear Srishty, Stay happy and keep smiling! 😊",
+      "Lovely Srishty, You’re a blessing to everyone! 🌈"
+    ];
+
+    function changeGreeting() {
+      const randomGreeting = greetings[Math.floor(Math.random() * greetings.length)];
+      const greetingText = document.getElementById('greetingText');
+      greetingText.style.opacity = 0;
+      setTimeout(() => {
+        greetingText.textContent = randomGreeting;
+        greetingText.style.opacity = 1;
+      }, 300);
+      createHearts();
+    }
+
+    function createHearts() {
+      const container = document.getElementById('heartsContainer');
+      for (let i = 0; i < 15; i++) {
+        const heart = document.createElement('span');
+        heart.textContent = Math.random() > 0.5 ? '❤' : '✨';
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.fontSize = (Math.random() * 1.5 + 1) + 'rem';
+        heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+        container.appendChild(heart);
+        setTimeout(() => {
+          heart.remove();
+        }, 6000);
+      }
+    }
+
+    createHearts(); // Initial floating hearts
+    setInterval(createHearts, 5000); // Continuously generate hearts
+  </script>
+</body>
+</html>
