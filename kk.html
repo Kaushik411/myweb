@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greeting for Riya</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            background: #1e1e2f;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-top: 50px;
+        }
+        #greetBtn {
+            padding: 12px 25px;
+            margin: 20px;
+            background: #ff4081;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        #greetBtn:hover {
+            background: #e91e63;
+        }
+        .effect-options {
+            margin-top: 20px;
+            text-align: left;
+            display: inline-block;
+            background: #2c2c3c;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .effect-options label {
+            display: block;
+            margin: 10px 0;
+            cursor: pointer;
+        }
+        #message {
+            margin-top: 30px;
+            font-size: 1.8em;
+            min-height: 50px;
+        }
+
+        /* Typewriter animation */
+        .typewriter {
+            border-right: 2px solid #ff4081;
+            white-space: nowrap;
+            overflow: hidden;
+            width: 0;
+            animation: typing 3s steps(30, end) forwards;
+        }
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        /* Color changing background */
+        @keyframes bgChange {
+            0% { background-color: #1e1e2f; }
+            25% { background-color: #4a148c; }
+            50% { background-color: #880e4f; }
+            75% { background-color: #ff6f00; }
+            100% { background-color: #1e1e2f; }
+        }
+        .bg-animate {
+            animation: bgChange 5s infinite alternate;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Special Greeting for Riya</h1>
+    <button id="greetBtn">Click to Greet</button>
+
+    <div class="effect-options">
+        <h3>Choose an Effect:</h3>
+        <label><input type="radio" name="effect" value="confetti"> Confetti</label>
+        <label><input type="radio" name="effect" value="typewriter"> Typewriter Text</label>
+        <label><input type="radio" name="effect" value="bgColor"> Color Changing Background</label>
+    </div>
+
+    <div id="message"></div>
+
+    <script>
+        const greetBtn = document.getElementById('greetBtn');
+        const messageDiv = document.getElementById('message');
+
+        greetBtn.addEventListener('click', () => {
+            const selectedEffect = document.querySelector('input[name="effect"]:checked');
+            if (!selectedEffect) {
+                alert("Please select an effect first!");
+                return;
+            }
+
+            const greetingText = "You are truly special, Riya! 🌸";
+
+            // Clear previous classes
+            messageDiv.className = "";
+            document.body.classList.remove('bg-animate');
+            messageDiv.innerHTML = greetingText;
+
+            // Apply effects
+            if (selectedEffect.value === "typewriter") {
+                messageDiv.classList.add('typewriter');
+            } else if (selectedEffect.value === "bgColor") {
+                document.body.classList.add('bg-animate');
+            } else if (selectedEffect.value === "confetti") {
+                launchConfetti();
+            }
+        });
+
+        // Confetti effect
+        function launchConfetti() {
+            const duration = 3 * 1000;
+            const end = Date.now() + duration;
+
+            (function frame() {
+                // Create confetti particles
+                const colors = ['#ff4081', '#4caf50', '#2196f3', '#ffeb3b', '#ff9800'];
+                const particle = document.createElement('div');
+                particle.style.position = 'fixed';
+                particle.style.width = '10px';
+                particle.style.height = '10px';
+                particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.left = Math.random() * window.innerWidth + 'px';
+                particle.style.top = '-10px';
+                particle.style.opacity = 0.9;
+                particle.style.transform = 'rotate(' + Math.random() * 360 + 'deg)';
+                particle.style.transition = 'top 3s ease-out, opacity 3s ease-out';
+                document.body.appendChild(particle);
+
+                // Animate particle
+                setTimeout(() => {
+                    particle.style.top = window.innerHeight + 'px';
+                    particle.style.opacity = 0;
+                    setTimeout(() => document.body.removeChild(particle), 3000);
+                }, 10);
+
+                // Repeat until time ends
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                }
+            })();
+        }
+    </script>
+</body>
+</html>
