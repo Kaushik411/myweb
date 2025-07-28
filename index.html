@@ -1,222 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Welcome to Riya's World</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greeting for Riya</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            background: #1e1e2f;
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-top: 50px;
+        }
+        #greetBtn {
+            padding: 12px 25px;
+            margin: 20px;
+            background: #ff4081;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        #greetBtn:hover {
+            background: #e91e63;
+        }
+        .effect-options {
+            margin-top: 20px;
+            text-align: left;
+            display: inline-block;
+            background: #2c2c3c;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .effect-options label {
+            display: block;
+            margin: 10px 0;
+            cursor: pointer;
+        }
+        #message {
+            margin-top: 30px;
+            font-size: 1.8em;
+            min-height: 50px;
+        }
 
-    body {
-      height: 100vh;
-      background: linear-gradient(to top, #a3f7bf 0%, #d0f4ff 100%);
-      overflow: hidden;
-      font-family: 'Great Vibes', cursive;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-    }
+        /* Typewriter animation */
+        .typewriter {
+            border-right: 2px solid #ff4081;
+            white-space: nowrap;
+            overflow: hidden;
+            width: 0;
+            animation: typing 3s steps(30, end) forwards;
+        }
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
 
-    .container {
-      text-align: center;
-      z-index: 2;
-    }
-
-    h1 {
-      font-size: 3rem;
-      color: #0077cc;
-      margin-bottom: 20px;
-      animation: fadeIn 2s ease-in-out forwards;
-      opacity: 0;
-    }
-
-    .name {
-      font-size: 6rem;
-      white-space: nowrap;
-      border-right: 4px solid rgba(0, 0, 0, 0.3);
-      width: 0;
-      overflow: hidden;
-      color: #ff4da6;
-      animation: typing 4s steps(10, end) 1s forwards, blink 0.75s step-end infinite 5s;
-    }
-
-    @keyframes typing {
-      to {
-        width: 300px;
-      }
-    }
-
-    @keyframes blink {
-      50% {
-        border-color: transparent;
-      }
-    }
-
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-      }
-    }
-
-    button {
-      margin-top: 30px;
-      padding: 12px 25px;
-      font-size: 1.2rem;
-      background: #ff69b4;
-      color: white;
-      border: none;
-      border-radius: 30px;
-      cursor: pointer;
-      transition: background 0.3s ease;
-      font-family: 'Arial', sans-serif;
-    }
-
-    button:hover {
-      background: #ff85c1;
-    }
-
-    /* Nature */
-    .ground {
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      height: 100px;
-      background: linear-gradient(to top, #56ab2f, #a8e063);
-      border-top-left-radius: 100px 40px;
-      border-top-right-radius: 100px 40px;
-      z-index: 1;
-    }
-
-    .cloud {
-      position: absolute;
-      background: white;
-      border-radius: 50%;
-      opacity: 0.6;
-      animation: moveCloud 60s linear infinite;
-    }
-
-    .cloud1 {
-      width: 120px;
-      height: 60px;
-      top: 60px;
-      left: -150px;
-    }
-
-    .cloud2 {
-      width: 200px;
-      height: 100px;
-      top: 120px;
-      left: -250px;
-      animation-delay: 15s;
-    }
-
-    @keyframes moveCloud {
-      0% { left: -300px; }
-      100% { left: 110vw; }
-    }
-
-    .butterfly {
-      position: absolute;
-      width: 50px;
-      height: 50px;
-      background-image: url('https://cdn-icons-png.flaticon.com/128/3615/3615779.png');
-      background-size: contain;
-      background-repeat: no-repeat;
-      animation: flyButterfly 20s linear infinite;
-      opacity: 0.9;
-    }
-
-    .butterfly:nth-child(1) { top: 50%; left: -60px; animation-delay: 0s; }
-    .butterfly:nth-child(2) { top: 30%; left: -100px; animation-delay: 4s; }
-    .butterfly:nth-child(3) { top: 60%; left: -80px; animation-delay: 7s; }
-
-    @keyframes flyButterfly {
-      0% {
-        transform: translateY(0) rotate(0deg);
-      }
-      50% {
-        transform: translateY(-100px) rotate(20deg);
-      }
-      100% {
-        transform: translateX(110vw) translateY(0) rotate(0deg);
-      }
-    }
-
-    .flower {
-      position: absolute;
-      width: 24px;
-      height: 24px;
-      background-image: url('https://cdn-icons-png.flaticon.com/128/3533/3533860.png');
-      background-size: cover;
-      animation: fall 10s linear infinite;
-      opacity: 0.8;
-    }
-
-    @keyframes fall {
-      0% {
-        transform: translateY(-10vh) rotate(0deg);
-      }
-      100% {
-        transform: translateY(110vh) rotate(360deg);
-      }
-    }
-
-    .flower:nth-child(1) { left: 10%; animation-delay: 0s; }
-    .flower:nth-child(2) { left: 25%; animation-delay: 2s; }
-    .flower:nth-child(3) { left: 40%; animation-delay: 4s; }
-    .flower:nth-child(4) { left: 60%; animation-delay: 1s; }
-    .flower:nth-child(5) { left: 80%; animation-delay: 3s; }
-
-    audio {
-      display: none;
-    }
-
-    @media (max-width: 600px) {
-      .name {
-        font-size: 3rem;
-      }
-      h1 {
-        font-size: 2rem;
-      }
-    }
-  </style>
+        /* Color changing background */
+        @keyframes bgChange {
+            0% { background-color: #1e1e2f; }
+            25% { background-color: #4a148c; }
+            50% { background-color: #880e4f; }
+            75% { background-color: #ff6f00; }
+            100% { background-color: #1e1e2f; }
+        }
+        .bg-animate {
+            animation: bgChange 5s infinite alternate;
+        }
+    </style>
 </head>
 <body>
 
-  <!-- Bird Sounds -->
-  <audio autoplay loop>
-    <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_1a7f4cc57e.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
+    <h1>Special Greeting for Riya</h1>
+    <button id="greetBtn">Click to Greet</button>
 
-  <!-- Main Container -->
-  <div class="container">
-    <h1>Welcome to</h1>
-    <div class="name">Riya</div>
-    <button onclick="alert('Thanks for entering 🌸')">Enter</button>
-  </div>
+    <div class="effect-options">
+        <h3>Choose an Effect:</h3>
+        <label><input type="radio" name="effect" value="confetti"> Confetti</label>
+        <label><input type="radio" name="effect" value="typewriter"> Typewriter Text</label>
+        <label><input type="radio" name="effect" value="bgColor"> Color Changing Background</label>
+    </div>
 
-  <!-- Floating Elements -->
-  <div class="flower"></div>
-  <div class="flower"></div>
-  <div class="flower"></div>
-  <div class="flower"></div>
-  <div class="flower"></div>
+    <div id="message"></div>
 
-  <div class="butterfly"></div>
-  <div class="butterfly"></div>
-  <div class="butterfly"></div>
+    <script>
+        const greetBtn = document.getElementById('greetBtn');
+        const messageDiv = document.getElementById('message');
 
-  <div class="cloud cloud1"></div>
-  <div class="cloud cloud2"></div>
+        greetBtn.addEventListener('click', () => {
+            const selectedEffect = document.querySelector('input[name="effect"]:checked');
+            if (!selectedEffect) {
+                alert("Please select an effect first!");
+                return;
+            }
 
-  <div class="ground"></div>
+            const greetingText = "You are truly special, Riya! 🌸";
 
+            // Clear previous classes
+            messageDiv.className = "";
+            document.body.classList.remove('bg-animate');
+            messageDiv.innerHTML = greetingText;
+
+            // Apply effects
+            if (selectedEffect.value === "typewriter") {
+                messageDiv.classList.add('typewriter');
+            } else if (selectedEffect.value === "bgColor") {
+                document.body.classList.add('bg-animate');
+            } else if (selectedEffect.value === "confetti") {
+                launchConfetti();
+            }
+        });
+
+        // Confetti effect
+        function launchConfetti() {
+            const duration = 3 * 1000;
+            const end = Date.now() + duration;
+
+            (function frame() {
+                // Create confetti particles
+                const colors = ['#ff4081', '#4caf50', '#2196f3', '#ffeb3b', '#ff9800'];
+                const particle = document.createElement('div');
+                particle.style.position = 'fixed';
+                particle.style.width = '10px';
+                particle.style.height = '10px';
+                particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.left = Math.random() * window.innerWidth + 'px';
+                particle.style.top = '-10px';
+                particle.style.opacity = 0.9;
+                particle.style.transform = 'rotate(' + Math.random() * 360 + 'deg)';
+                particle.style.transition = 'top 3s ease-out, opacity 3s ease-out';
+                document.body.appendChild(particle);
+
+                // Animate particle
+                setTimeout(() => {
+                    particle.style.top = window.innerHeight + 'px';
+                    particle.style.opacity = 0;
+                    setTimeout(() => document.body.removeChild(particle), 3000);
+                }, 10);
+
+                // Repeat until time ends
+                if (Date.now() < end) {
+                    requestAnimationFrame(frame);
+                }
+            })();
+        }
+    </script>
 </body>
 </html>
